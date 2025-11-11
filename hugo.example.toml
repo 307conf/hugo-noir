@@ -43,6 +43,33 @@ defaultContentLanguageInSubdir = true # Creates URLs like /en/blog/
         pageRef = "/contact"
         weight = 5
 
+  [languages.pt]
+    languageName = "Português"
+    title = "John Doe - Portfolio & Blog"
+    weight = 1
+    contentDir = "content/pt"
+    [languages.pt.menu]
+      [[languages.pt.menu.main]]
+        name = "About"
+        pageRef = "/about" # Corresponds to content/en/about.md or content/en/about/_index.md
+        weight = 1
+      [[languages.pt.menu.main]]
+        name = "Experience"
+        pageRef = "/experience"
+        weight = 2
+      [[languages.pt.menu.main]]
+        name = "Projects"
+        pageRef = "/projects"
+        weight = 3
+      [[languages.pt.menu.main]]
+        name = "Blog"
+        pageRef = "/blogs" # Assumes a section named 'blogs'
+        weight = 4
+      [[languages.pt.menu.main]]
+        name = "Contact"
+        pageRef = "/contact"
+        weight = 5
+
   # Example for Spanish (es) - uncomment and adapt if needed
   # [languages.es]
   #   languageName = "Español"

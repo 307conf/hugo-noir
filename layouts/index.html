@@ -48,11 +48,11 @@
     {{ warnf "Author data not found. Please check your site configuration." }}
     {{ end }}
 
-    <!-- Tech Stack -->
-    {{ with (index site.Data .Language.Lang "tech") }}
+    <!-- sponsor Stack -->
+    {{ with (index site.Data .Language.Lang "sponsor") }}
         <section class="mb-20">
-            <h2 class="text-4xl font-bold mb-2 relative">{{ T "whatIWorkWith" }}</h2>
-            <div class="tech-carousel">
+            <h2 class="text-4xl font-bold mb-2 relative">{{ T "sponsorsTitle" }}</h2>
+            <div class="sponsor-carousel">
                 <div class="carousel-container">
                     <div class="carousel-track carousel-track-left-to-right">
                         {{- range .row1 -}}
@@ -91,7 +91,7 @@
             </div>
         </section>
     {{ else }}
-        {{ warnf "No tech stack data found for language %q. Please define either data/%s/tech.(yaml|toml|json) or params.tech in config." .Language.Lang }}
+        {{ warnf "No sponsor data found for language %q. Please define either data/%s/sponsor.(yaml|toml|json) or params.sponsor in config." .Language.Lang }}
     {{ end }}
 
     <!-- Experience Section -->
@@ -100,7 +100,7 @@
 
     {{ with $experience }}
     <section>
-        <h2 class="text-4xl font-bold mb-5">{{ T "experienceTitle" }}</h2>
+        <h2 class="text-4xl font-bold mb-5">{{ T "agendaTitle" }}</h2>
         <div class="space-y-4 max-w-3xl mx-auto">
             {{ range $index, $exp := . }}
             <div class="relative pl-8 before:content-[''] before:absolute before:left-0 before:top-0 before:w-[2px] before:h-full before:bg-gray-700 before:rounded-full">
@@ -133,14 +133,14 @@
     {{ warnf "No experience data found for language %q. Please define either data/%s/experience.(yaml|toml|json) or params.experience in config." .Language.Lang .Language.Lang }}
     {{ end }}
 
-    <!-- Projects Section -->
-    {{ $projectsData := index site.Data .Language.Lang "projects" }}
-    {{ $projects := cond (and $projectsData $projectsData.projects) $projectsData.projects site.Params.projects }}
+    <!-- trainings Section -->
+    {{ $trainingsData := index site.Data .Language.Lang "trainings" }}
+    {{ $trainings := cond (and $trainingsData $trainingsData.trainings) $trainingsData.trainings site.Params.trainings }}
 
-    {{ with $projects }}
+    {{ with $trainings }}
     <section class="mt-12 md:mt-20 mb-12 md:mb-20">
         <div class="flex justify-between items-center mb-6 md:mb-8">
-            <h2 class="text-2xl md:text-4xl font-bold">{{ T "projectsTitle" }}</h2>
+            <h2 class="text-2xl md:text-4xl font-bold">{{ T "trainingsTitle" }}</h2>
         </div>
         <div class="grid grid-cols-1 gap-6 md:gap-8 max-w-3xl mx-auto">
             {{ range first 2 . }}
@@ -154,9 +154,9 @@
                     <div class="absolute inset-0 z-30 p-4 pb-3 md:p-6 md:pb-4 flex flex-col justify-end transform transition-transform duration-500 translate-y-0 group-hover:translate-y-[-20px]">
                         <h3 class="text-xl md:text-2xl font-bold mb-1.5 md:mb-2 text-white line-clamp-2">{{ .title }}</h3>
                         <div class="hidden sm:flex flex-wrap gap-1 md:gap-2 mb-1.5 md:mb-3">
-                            {{ $techs := split .tech "," }}
-                            {{ range $tech := $techs }}
-                            <span class="px-1.5 md:px-2 py-0.5 bg-black/30 backdrop-blur-sm rounded-md text-[10px] md:text-xs font-medium text-white">{{ $tech }}</span>
+                            {{ $sponsors := split .sponsor "," }}
+                            {{ range $sponsor := $sponsors }}
+                            <span class="px-1.5 md:px-2 py-0.5 bg-black/30 backdrop-blur-sm rounded-md text-[10px] md:text-xs font-medium text-white">{{ $sponsor }}</span>
                             {{ end }}
                         </div>
                         <p class="hidden md:block text-sm text-white mb-3 line-clamp-3 md:line-clamp-4">{{ .description }}</p>
@@ -173,22 +173,22 @@
             </div>
             {{ end }}
             <div class="flex justify-center mt-4 md:mt-8">
-                <a href="{{ "projects/" | absLangURL }}" class="text-blue-500 hover:text-blue-400 transition-colors duration-200 text-sm md:text-lg">{{ T "viewAll" }}</a>
+                <a href="{{ "trainings/" | absLangURL }}" class="text-blue-500 hover:text-blue-400 transition-colors duration-200 text-sm md:text-lg">{{ T "viewAll" }}</a>
             </div>
         </div>
     </section>
     {{ else }}
-    {{ warnf "No project data found for language %q. Please define either data/%s/projects.(yaml|toml|json) or params.projects in config." .Language.Lang .Language.Lang }}
+    {{ warnf "No project data found for language %q. Please define either data/%s/trainings.(yaml|toml|json) or params.trainings in config." .Language.Lang .Language.Lang }}
     {{ end }}
 
     <!-- Blog Section -->
-    {{ $blogsData := index site.Data .Language.Lang "blogs" }}
-    {{ $blogs := cond (and $blogsData $blogsData.blogs) $blogsData.blogs site.Params.blogs }}
+    {{ $villagesData := index site.Data .Language.Lang "villages" }}
+    {{ $villages := cond (and $villagesData $villagesData.villages) $villagesData.villages site.Params.villages }}
     
-    {{ with $blogs }}
+    {{ with $villages }}
     <section class="mt-20 mb-20">
         <div class="flex justify-between items-center mb-8">
-            <h2 class="text-4xl font-bold">{{ T "blogsTitle" }}</h2>
+            <h2 class="text-4xl font-bold">{{ T "villagesTitle" }}</h2>
         </div>
         <div class="space-y-8 max-w-3xl mx-auto">
             {{ range first 3 . }}
@@ -207,16 +207,16 @@
             {{ end }}
         </div>
         <div class="flex justify-center mt-8">
-            <a href="{{ "blogs/" | absLangURL }}" class="text-blue-500 hover:text-blue-400 transition-colors duration-200 text-lg">{{ T "viewAll" }}</a>
+            <a href="{{ "villages/" | absLangURL }}" class="text-blue-500 hover:text-blue-400 transition-colors duration-200 text-lg">{{ T "viewAll" }}</a>
         </div>
     </section>
     {{ else }}
-    {{ warnf "No blog data found for language %q. Please define either data/%s/blogs.(yaml|toml|json) or params.blogs in config." .Language.Lang .Language.Lang }}
+    {{ warnf "No blog data found for language %q. Please define either data/%s/villages.(yaml|toml|json) or params.villages in config." .Language.Lang .Language.Lang }}
     {{ end }}
 </div>
 
 <style>
-.tech-carousel {
+.sponsor-carousel {
     width: 100%;
     overflow: hidden;
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
